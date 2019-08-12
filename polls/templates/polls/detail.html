@@ -2,8 +2,30 @@
     {{ question_key.question_text }}
 </h1>
 
-<ul>
-    {% for c in question_key.choice_set.all %}
-       <li> {{c.choice_text}}</li>
+{% if error_message %} <P> {{error_message}}</P> {% endif %}
+
+
+<form action="{% url 'polls:vote'  question_key.id %}" method="post">
+{% csrf_token %}
+{% for c in question_key.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ c.id}}">
+    <label for="choice{{ forloop.counter }}"> {{c.choice_text}} </label> <br>
+
     {% endfor %}
-</ul>
+
+    <input type="submit" value="vote">
+
+
+</form>
+
+
+
+
+
+
+
+<!--<ul>-->
+<!--    {% for c in question_key.choice_set.all %}-->
+<!--       <li> {{c.choice_text}}</li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->
