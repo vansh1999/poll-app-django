@@ -1,9 +1,9 @@
 <h1>
-    {{ question.question_text }}
+    {{ question_key.question_text }}
 </h1>
 
 <ul>
-    {% for choice in question.choice_set.all %}
-       <li> {{choice.choice_text}}</li>
+    {% for c in question_key.choice_set.all %}
+       <li> {{c.choice_text}}</li>
     {% endfor %}
 </ul>
